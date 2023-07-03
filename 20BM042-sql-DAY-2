@@ -1,0 +1,22 @@
+create database university100;
+create table students(student_id int primary key,
+student_name VARCHAR(50),
+student_age int,
+student_major VARCHAR(50));
+insert into students values
+       (1,"rohtih",20,"Computer Science"),
+       (2,"surya",22,"Physics"),
+       (3,"dani",19,"Mathematics"),
+       (4,"mia",21,"Computer Science"),
+       (5,"rose",20,"Chemistry");
+  
+select * from Students;
+
+SELECT student_name FROM Students WHERE student_major = 'Computer Science';
+
+SELECT * FROM Students WHERE student_age = (SELECT MAX(student_age) FROM Students);
+
+UPDATE Students SET student_major = 'New Major' WHERE student_id = 3;
+
+DELETE FROM Students WHERE student_id = 4;
+
