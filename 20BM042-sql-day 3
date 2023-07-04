@@ -1,0 +1,48 @@
+create database BooksDB100;
+#create table to collect information about the books
+create table Books(s_no int primary key,
+                   book_title text,
+                   author_name text,
+                   genre text,
+                   publication year,
+                   price int);
+insert into Books values
+(1,"And then were done","Robert","mystery",1997,5000),
+(2,"circe","Hitler","fantasy",1987,500),
+(3,"scarcy","Mary Comb","horror",2007,2000),
+(4,"Life of Lord","Prince Jack","Fiction",1907,4000),
+(5,"the call of wild","mitchelson","action",2002,5500),
+(6,"tom and jerry","fred quimby","Cartoon",2010,3000);
+#query1 retrieve all books from database
+select * from Books;
+#query2 retrieve details of books based on book title
+select * from Books 
+             Where book_title Like "Life%";
+# query3 update prices of books
+update Books set price=100000 
+             where price=5000;
+select * from Books;
+#query4 delete a book from the database based on book title
+delete from Books where book_title="scarcy";
+select * from Books;
+# query 5 average prices of the book
+select avg(price) from books;
+# creation of another table to store details of the author
+create table authors(se_no int primary key,
+		    author_age int,
+                    author_native varchar(50),
+                    author_name varchar(60),
+                    s_no int,
+		    constraint fk_s_no foreign key(s_no) references Books(s_no));
+insert into authors values
+(1,20,"kuwait","mitchelson",5),
+(2,25,"Britan","fred quimby",2),
+(3,30,"Sydney","Hitler",1),
+(4,40,"England","Robert",6);
+#inner join
+select Books.book_title,Books.author_name,Books.s_no,Books.Price,authors.s_no from Books inner join authors on Books.s_no=authors.s_no order by se_no;
+#right join
+select Books.book_title,Books.author_name,Books.s_no,Books.Price,authors.s_no from Books right join authors on Books.s_no=authors.s_no order by se_no;
+#left join
+select Books.book_title,Books.author_name,Books.s_no,Books.Price,authors.s_no from Books left join authors on Books.s_no=authors.s_no order by se_no;
+	
