@@ -1,0 +1,20 @@
+create database dd;
+
+create table books(
+   title varchar(50),
+   author varchar(100),
+   genre varchar(120),
+   publication_year year,
+   price int);
+insert into books values
+("Book 1","aaaa","Fantasy",1990,19),
+("Book 2","bbbb","Poetry",2000,20),
+("Book 3","cccc","Thriller",2002,46),
+("Book 4","dddd","Novel",2021,34),
+("Book 5","eeee","Friction",2015,67);
+select * from books;
+select * from books where title="Book 1";
+update books set price=20 where price=46;
+select * from books;
+delete from books where title="Book 5";
+select * from books;
