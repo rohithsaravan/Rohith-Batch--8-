@@ -1,0 +1,37 @@
+create database customer_db;
+create table customer(
+    customer_id int primary key auto_increment,
+    c_name varchar(30),
+    address varchar(50),
+    gender varchar(20));
+    
+insert into customer values(1,"rohi","1st street dubai","male");
+insert into customer values(2,"suhi","2nd street dubai","male");
+insert into customer values(3,"prashi","3rd street dubai","male");
+insert into customer values(4,"idly","4th street dubai","female");
+insert into customer values(5,"karakam","5th street dubai","female");
+
+select * from customer;
+    
+create table trans(
+	s_no int,
+    things_name varchar(30),
+    buying varchar(50),
+    selling varchar(50),
+    sno int);
+
+insert into trans values(1,"bag",600,810,2);
+insert into trans values(2,"bat",800,1000,1);
+insert into trans values(3,"ball",150,215,2);
+insert into trans values(4,"clock",1000,1400,2);
+insert into trans values(5,"toys",700,800,3);
+
+select * from trans;
+select * from trans order by selling desc;
+select trans.s_no,trans.things_name,trans.buying,trans.selling,trans.sno from trans
+left join customer
+on trans.sno=customer.sno;
+select * from transactions where sellin>800;
+
+ 
+
