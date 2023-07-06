@@ -1,0 +1,72 @@
+import mysql.connector
+#Establish connection to MySQL database
+db=mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="root",
+    database="StudentDB"
+)
+#function to insert a new student record
+def insert_student():
+    cursor=db.cursor()
+    #students_id=int(input("Enter Student Id:"))
+    s_name=input("Enter student name:")
+    age=int(input("Enter student age:"))
+    gender=input("Enter student gender:")
+    course=input("Enter student course:")
+    query = "INSERT INTO Students (s_name, age, gender, course) VALUES (%s, %s, %s, %s)"
+    values = (s_name, age, gender, course)
+    cursor.execute(query, values)
+    db.commit()
+    print("Student record inserted successsfully")
+#function to display all student records
+def display_students():
+    cursor=db.cursor()
+    cursor.execute("Select * from Students")
+    result=cursor.fetchall()
+    for row in result:
+        print("Student ID: ",row[0])
+        print("Student Name: ",row[1])
+        print("Student age: ",row[2])
+        print("Student Gender: ",row[3])
+        print("Student course: ",row[4])
+        print("--------------------------------")
+#function to update student
+def update_student():
+    cursor =db.cursor()
+    students_id=int(input("Enter Students ID to update:"))
+    s_name=input("Enter updated name:")
+    age=input("Enter updated/current age:")
+    gender=input("Enter student gender:")
+    course=input("Enter updated/current course:")
+    query="update Students set s_name=%s, age=%s, gender=%s, course=%s where students_id=%s "
+    values=(s_name, age, gender, course,students_id)
+    cursor.execute(query, values)
+    db.commit()
+    print("Student record updated successfully!!!")
+#function to delete student record
+def delete_student():
+    cursor=db.cursor()
+    students_id=int(input("Enter student ID to delete:"))
+    query="Delete from Students where students_id= %s"
+    values=(students_id,)
+    cursor.execute(query,values)
+    db.commit()
+    print("Student record deleted successfully!!!")
+#main program
+print("Student Management System")
+print("---------------------------")
+print("1.Insertion \n 2. Display \n 3. Update \n 4. Delete \n")
+while True:
+    choice=int(input("ENter your choice :"))
+    if choice==1:
+        insert_student()
+    elif choice==2:
+        display_students()
+    elif choice==3:
+        update_student()
+    elif choice==4:
+        delete_student()
+    else:
+        break
+print()
